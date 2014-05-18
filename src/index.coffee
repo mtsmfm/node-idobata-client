@@ -15,7 +15,6 @@ class IdobataClient
     data = JSON.stringify({format, source})
 
     @createHook(room_id) (err, res, body) =>
-      console.log res
       hook = JSON.parse(body).hook
 
       @createClient(hook.endpoint)
