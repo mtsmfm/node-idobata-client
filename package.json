@@ -1,0 +1,20 @@
+{
+  "name": "idobata-client",
+  "version": "0.0.0",
+  "description": "Unofficial idobata client for nodejs",
+  "main": "./src/index",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "idobata"
+  ],
+  "author": "Fumiaki MATSUSHIMA",
+  "license": "MIT",
+  "dependencies": {
+    "scoped-http-client": "0.9.8"
+  },
+  "devDependencies": {
+    "coffee-script": "~> 1.7.1"
+  }
+}
