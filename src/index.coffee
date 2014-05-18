@@ -1,21 +1,24 @@
+Package = require('../package')
 HttpClient = require('scoped-http-client')
 
 class IdobataClient
   constructor: (url, api_token) ->
-    @client = HttpClient.create(url)
-      .header('User-Agent',   'IdobataClient')
-      .header('Content-Type', 'application/json')
+    @client = @createClient(url)
       .header('X-API-Token',  api_token)
+
+  createClient: (url) ->
+    HttpClient.create(url)
+      .header('User-Agent',   "NodeIdobataClient/#{Package.version}")
+      .header('Content-Type', 'application/json')
 
   postViaWebhook: (room_id, {format, source}) ->
     data = JSON.stringify({format, source})
 
     @createHook(room_id) (err, res, body) =>
+      console.log res
       hook = JSON.parse(body).hook
 
-      HttpClient.create(hook.endpoint)
-        .header('User-Agent',   'IdobataClient')
-        .header('Content-Type', 'application/json')
+      @createClient(hook.endpoint)
         .post(data) =>
           @destroyHook(hook.id) ->
 
